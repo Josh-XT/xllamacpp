@@ -70,10 +70,7 @@ if PLATFORM == "Windows":
             "mtmd",
             "cpp-httplib",
             "server-context",
-        ]
-    )
-    if os.path.exists(os.path.join(LLAMACPP_LIBS_DIR, "llguidance.lib")):
-        LIBRARIES.append("llguidance")
+            "llguidance",
             "ssl",
             "crypto",
             "Advapi32",
@@ -107,17 +104,13 @@ else:
             f"{LLAMACPP_LIBS_DIR}/libcpp-httplib.a",
             f"{LLAMACPP_LIBS_DIR}/libmtmd.a",
             f"{LLAMACPP_LIBS_DIR}/libcommon.a",
+            f"{LLAMACPP_LIBS_DIR}/libllguidance.a",
             f"{LLAMACPP_LIBS_DIR}/libllama.a",
             f"{LLAMACPP_LIBS_DIR}/libggml.a",
             f"{LLAMACPP_LIBS_DIR}/libggml-cpu.a",
             f"{LLAMACPP_LIBS_DIR}/libggml-base.a",
         ]
     )
-    llguidance_lib = f"{LLAMACPP_LIBS_DIR}/libllguidance.a"
-    if os.path.exists(llguidance_lib):
-        # Insert before libllama.a for correct link order
-        idx = EXTRA_OBJECTS.index(f"{LLAMACPP_LIBS_DIR}/libllama.a")
-        EXTRA_OBJECTS.insert(idx, llguidance_lib)
     if BUILD_CUDA:
         EXTRA_OBJECTS.extend(
             [
