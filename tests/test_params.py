@@ -337,10 +337,6 @@ def test_common_params():
     params.speculative.ngram_size_m = 32
     assert params.speculative.ngram_size_m == 32
 
-    assert params.speculative.ngram_check_rate == 1
-    params.speculative.ngram_check_rate = 2
-    assert params.speculative.ngram_check_rate == 2
-
     assert params.speculative.ngram_min_hits == 1
     params.speculative.ngram_min_hits = 3
     assert params.speculative.ngram_min_hits == 3
